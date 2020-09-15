@@ -1,0 +1,1663 @@
+{
+  "info": {
+    "_postman_id": "5d7784d9-d5ec-4184-bdfa-64bae9d99b6b",
+    "name": "butJet0.2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Person tests (positive)",
+      "item": [
+        {
+          "name": "/person/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Accs\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Plans\");",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "41d40537-6ff3-4bb8-9382-2a6772692fec",
+                "exec": [
+                  "pm.environment.set(\"name\", \"PmTestName\"+Math.floor(Math.random() * 1000));",
+                  "pm.environment.set(\"password\", \"PmTestPassword\"+Math.floor(Math.random() * 1000));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/person/token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Body have token\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"token\");",
+                  "});",
+                  "pm.test(\"Token is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.token).not.eq(undefined);",
+                  "});",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"token\", jsonData.token);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/token",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/person/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Accs\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Plans\");",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "65f093b2-f0e1-419b-b0f1-20468d345890",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/person/rdn",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1b9a02cb-6341-4d18-a4ca-8c50aba27836",
+                "exec": [
+                  "pm.test(\"RDN is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.rdn).not.eq(undefined);",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "edc45615-3df8-41ad-8faf-c3c971ed1a08",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/rdn",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                "rdn"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/person/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Accs\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Plans\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bd07c2e0-c35e-46f1-8e17-921e3bda85c4",
+                "exec": [
+                  "pm.environment.set(\"newPassword\", \"PmTestNewPassword\"+Math.floor(Math.random() * 100));",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"password\":\"{{newPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/person/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Status is deleted\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(\"deleted\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bd07c2e0-c35e-46f1-8e17-921e3bda85c4",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "5d6b0dc9-d4a9-424c-b596-a5f53f75f3d4",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "081f89b4-3c95-4725-9148-1e4aa0a5f8b0",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Acc tests (positive)",
+      "item": [
+        {
+          "name": "create_person",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Accs\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Plans\");",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "41d40537-6ff3-4bb8-9382-2a6772692fec",
+                "exec": [
+                  "pm.environment.set(\"name\", \"PmTestName\"+Math.floor(Math.random() * 100));",
+                  "pm.environment.set(\"password\", \"PmTestPassword\"+Math.floor(Math.random() * 100));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "take_token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Body have token\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"token\");",
+                  "});",
+                  "pm.test(\"Token is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.token).not.eq(undefined);",
+                  "});",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"token\", jsonData.token);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/token",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/acc/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"acc\", jsonData.id);",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "65f093b2-f0e1-419b-b0f1-20468d345890",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": {{$randomUserName}},\n    \"balance\": {{$randomInt}},\n    \"isActive\": {{$randomBoolean}}\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/acc/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "acc",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/acc/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "65f093b2-f0e1-419b-b0f1-20468d345890",
+                "exec": [
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/acc/{{acc}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "acc",
+                "{{acc}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/acc/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "65f093b2-f0e1-419b-b0f1-20468d345890",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": {{$randomUserName}},\n    \"balance\": {{$randomInt}},\n    \"isActive\": {{$randomBoolean}}\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/acc/{{acc}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "acc",
+                "{{acc}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/acc/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Status is deleted\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(\"deleted\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "65f093b2-f0e1-419b-b0f1-20468d345890",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/acc/{{acc}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "acc",
+                "{{acc}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+                "exec": [
+                  "pm.test(\"Status is deleted\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(\"deleted\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bd07c2e0-c35e-46f1-8e17-921e3bda85c4",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "39e2058b-0e4e-458f-ba09-e4e879363dd2",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "3a304b00-8d24-4235-840d-f6525ffa3316",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Plan tests (positive)",
+      "item": [
+        {
+          "name": "create_person",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7304e7b1-b18a-4efd-9cba-244ee08cafe7",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Accs\");",
+                  "});",
+                  "pm.test(\"Body have accs\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Plans\");",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1431e39f-61bb-4d7e-adb0-4e00c8f08832",
+                "exec": [
+                  "pm.environment.set(\"name\", \"PmTestName\"+Math.floor(Math.random() * 100));",
+                  "pm.environment.set(\"password\", \"PmTestPassword\"+Math.floor(Math.random() * 100));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "take_token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a34872ea-ceef-4e56-9ea1-cb1ab4972f87",
+                "exec": [
+                  "pm.test(\"Body have token\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"token\");",
+                  "});",
+                  "pm.test(\"Token is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.token).not.eq(undefined);",
+                  "});",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"token\", jsonData.token);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/token",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/plan/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3f792e25-e79d-4380-ad47-66b5875184cc",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Blance is 100\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.balance).eq(100);",
+                  "});",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"plan\", jsonData.id);",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2f9526c0-280d-45e9-a682-8eae62adb733",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"balance\": 100,\n    \"date\":\"2021-09-14\" \n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/plan/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "plan",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/plan/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "15f40e9b-1bbe-4e09-92c4-5edde500ead4",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "f10b4231-bc12-4408-b3fc-81f159592544",
+                "exec": [
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/plan/{{plan}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "plan",
+                "{{plan}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/plan/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "41253510-4442-40b1-b5ad-39f677fdafd1",
+                "exec": [
+                  "pm.test(\"Name is  not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Id is not Null\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.id).not.eq(undefined);",
+                  "});",
+                  "pm.test(\"Body have id\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"id\");",
+                  "});",
+                  "pm.test(\"Body have name\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "});",
+                  "pm.test(\"Blance is 200\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.balance).eq(200);",
+                  "});",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c2badbcf-4599-47f2-867c-7de9da579b24",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": {{$randomUserName}},\n    \"balance\": 200,\n    \"date\": \"2021-09-14\"\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/plan/{{plan}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "plan",
+                "{{plan}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/plan/",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "706251da-8c5f-400f-a955-c01383aab959",
+                "exec": [
+                  "pm.test(\"Status is deleted\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(\"deleted\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "02359001-14fc-4e38-b73c-7778abc9fc67",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/plan/{{plan}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "plan",
+                "{{plan}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "672bc072-dfa9-4d10-bc15-58ef025d8a0e",
+                "exec": [
+                  "pm.test(\"Status is deleted\", function() {",
+                  "var jsonData = pm.response.json();",
+                  "pm.expect(jsonData.name).not.eq(\"deleted\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0d5b23a7-cc5a-49e1-a378-f71693408e00",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{token}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "query",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/person/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "person",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d0886505-5048-4aec-8300-deadd21c8fa4",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "d6fd0854-9f47-4756-9e40-286bb4d533a2",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "6bac0f18-7df2-4532-b115-105778044e91",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "41c6a5dc-c318-4b05-93c1-c2f479d2e43d",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

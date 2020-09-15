@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.vapima.butjet</groupId>
-    <artifactId>butJet0.2</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>butJet</artifactId>
+    <version>0.2</version>
     <packaging>war</packaging>
 
-    <name>butJet0.2 Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
+    <name>butJet 0.2 Maven Webapp</name>
     <url>http://vapima.ru/butjet</url>
 
     <properties>
