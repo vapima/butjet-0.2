@@ -1,29 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
+    <!--
     <Resource name="jdbc/butjet"
-              auth="Container"
-              type="javax.sql.DataSource"
-              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-              testWhileIdle="true"
-              testOnBorrow="true"
-              testOnReturn="false"
-              validationQuery="SELECT 1"
-              validationInterval="30000"
-              timeBetweenEvictionRunsMillis="30000"
-              maxActive="100"
-              minIdle="10"
-              maxWait="10000"
-              initialSize="10"
-              removeAbandonedTimeout="60"
-              removeAbandoned="true"
-              logAbandoned="true"
-              minEvictableIdleTimeMillis="30000"
-              jmxEnabled="true"
-              jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
-            org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
-              username="butjet"
-              password="12345678"
+                  auth="Container"
+                  type="javax.sql.DataSource"
+                  factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+                  testWhileIdle="false"
+                  testOnBorrow="true"
+                  testOnReturn="false"
+                  validationQuery="SELECT 1"
+                  validationInterval="30000"
+                  timeBetweenEvictionRunsMillis="30000"
+                  maxActive="100"
+                  minIdle="10"
+                  maxWait="10000"
+                  initialSize="30"
+                  removeAbandonedTimeout="300"
+                  removeAbandoned="true"
+                  logAbandoned="true"
               driverClassName="com.mysql.jdbc.Driver"
-              closeMethod="close"
-              url="jdbc:mysql://127.0.0.1:8889/butjet?serverTimezone=Europe/Moscow"/>
+                  minEvictableIdleTimeMillis="30000"
+                  jmxEnabled="true"
+              jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
+    org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;
+    org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer"
+                  username="butjet"
+                  password="12345678"
+                  closeMethod="close"
+                  url="jdbc:mysql://localhost:8889/butjet?serverTimezone=Europe/Moscow"/>
+
+           driverClassName="com.mysql.jdbc.Driver"
+                         defaultAutoCommit="false"
+           <Resource
+                   driverClassName="com.mysql.jdbc.Driver"
+                   url="jdbc:mysql://localhost:8889/butjet?serverTimezone=Europe/Moscow"
+                   username="butjet"
+                   password="12345678"
+                   maxActive="50"
+                   maxIdle="20"
+                   name="jdbc/butjet"
+                   auth="Container"
+                   maxWait="10000"
+                   type="javax.sql.DataSource" />
+
+
+          -->
+           <Resource name="jdbc/butjet"
+                     auth="Container"
+                     closeMethod="close"
+                     type="javax.sql.DataSource"
+                     username="butjet"
+                     password="12345678"
+                     driverClassName="com.mysql.jdbc.Driver"
+                     url="jdbc:mysql://localhost:8889/butjet?serverTimezone=Europe/Moscow"
+                     maxActive="100"
+                     initialSize="30"
+                     minIdle="10"
+                     maxIdle="50"/>
+
 </Context>
