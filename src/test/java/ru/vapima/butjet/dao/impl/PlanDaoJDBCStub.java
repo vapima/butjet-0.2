@@ -1,6 +1,6 @@
 package ru.vapima.butjet.dao.impl;
 
-import ru.vapima.butjet.dao.PlanDAO;
+import ru.vapima.butjet.dao.Dao;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.exeptions.PlanExeption;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class PlanDaoJDBCStub implements PlanDAO {
+public class PlanDaoJDBCStub implements Dao<Plan> {
 Plan plan=new Plan(1,"test",0, LocalDate.parse("2029-01-01"),1);
 
     @Override
@@ -52,10 +52,5 @@ Plan plan=new Plan(1,"test",0, LocalDate.parse("2029-01-01"),1);
         return plans;
     }
 
-    @Override
-    public ArrayList<Plan> takeAll(String name) throws SQLException, PersonExeption, AccExeption, PlanExeption {
-        ArrayList<Plan>plans=new ArrayList<>();
-        plans.add(plan);
-        return plans;
-    }
+
 }

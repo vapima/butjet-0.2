@@ -1,14 +1,16 @@
 package ru.vapima.butjet.dao.impl;
 
-import ru.vapima.butjet.dao.PersonDAO;
+import ru.vapima.butjet.dao.Dao;
+import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
+import ru.vapima.butjet.exeptions.PlanExeption;
 import ru.vapima.butjet.model.Person;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class PersonDaoJDBC implements PersonDAO {
+public class PersonDaoJDBC implements Dao<Person> {
     DataSource dataSource;
     public static final String SQL_TAKE_BY_ID ="SELECT * FROM persons WHERE id=?";
     public static final String SQL_TAKE_BY_NAME ="SELECT * FROM persons WHERE name=?";
@@ -64,7 +66,9 @@ public class PersonDaoJDBC implements PersonDAO {
         int i;
         try (Connection conn=dataSource.getConnection();PreparedStatement statement = conn.prepareStatement(SQL_DELETE)) {
             statement.setInt(1, person.getId());
+            statement.execute("SET FOREIGN_KEY_CHECKS=0");
             i = statement.executeUpdate();
+            statement.execute("SET FOREIGN_KEY_CHECKS=1");
         }
         return i;
     }
@@ -113,17 +117,9 @@ public class PersonDaoJDBC implements PersonDAO {
     }
 
     @Override
-    public ArrayList<Person> takeAll(String name) throws PersonExeption, SQLException {
-        ArrayList<Person> persons = new ArrayList<>();
-        try (Connection conn=dataSource.getConnection();PreparedStatement statement =conn.prepareStatement(SQL_TAKE_BY_NAME)) {
-            statement.setString(1, name);
-            try (ResultSet rs = statement.executeQuery()) {
-                while (rs.next()) {
-                    persons.add(new Person(Integer.parseInt(rs.getString(SQL_ID)), rs.getString(SQL_NAME), rs.getString(SQL_TOKEN), rs.getString(SQL_PASSWORD)));
-                }
-            }
-        }
-        return persons;
+    public ArrayList<Person> takeAllByForeignKey(Integer foreignKey) throws SQLException, AccExeption, PlanExeption, PersonExeption {
+        throw new PersonExeption("Person does not have Foreign Key. This action is not available.");
     }
-    
+
+
 }

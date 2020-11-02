@@ -1,7 +1,6 @@
 package ru.vapima.butjet.service.json;
 
 import ru.vapima.butjet.model.Acc;
-import ru.vapima.butjet.model.AccInfoEntity;
 import ru.vapima.butjet.model.Person;
 import ru.vapima.butjet.model.Plan;
 
@@ -9,17 +8,14 @@ import java.util.ArrayList;
 
 
 public interface Serial {
-    String go(Person person);
+    String parse(Person person);
 
-    String go(Acc acc);
+    String parse(Acc acc);
 
-    String go(Plan plan);
+    String parse(Plan plan);
 
-    String go(AccInfoEntity accInfoEntity);
+    String parceAccsArray(ArrayList<Acc> accs);
 
-    String goAccs(ArrayList<Acc> accs);
+    String parcePlansArray(ArrayList<Plan> plans);
 
-    String goPlans(ArrayList<Plan> plans);
-
-     String goAccInfoEntity(ArrayList<AccInfoEntity> accInfoEntitys);
 }

@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
 public class BdCreatorJDBC {
     DataSource dataSource;
@@ -55,17 +56,16 @@ public class BdCreatorJDBC {
                 " FOREIGN KEY (personId) REFERENCES persons(id))";
         return creat(sql);
     }
-
-    public Integer creatAccsInfo() throws SQLException {
-        String sql = "CREATE TABLE accsinfo " +
+    public Integer creatAccRecs() throws SQLException {
+        String sql = "CREATE TABLE accrecs " +
                 "(id INTEGER(200) NOT NULL AUTO_INCREMENT, " +
+                " balance INTEGER (100), " +
                 " personId INTEGER (100) not NULL, " +
-                " nameacc VARCHAR(100) not NULL, " +
-                " name VARCHAR(100) not NULL, " +
-                " description VARCHAR(100) not NULL, " +
-                " active BOOLEAN, " +
+                " accId INTEGER (100) not NULL, " +
+                " datetime TIMESTAMP NOT NULL , " +
                 " PRIMARY KEY (id)," +
-                " FOREIGN KEY (personId) REFERENCES persons(id))";
+                " FOREIGN KEY (personId) REFERENCES persons(id), "+
+                " FOREIGN KEY (accId) REFERENCES accs(id))";
         return creat(sql);
     }
 

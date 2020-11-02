@@ -2,7 +2,7 @@ package ru.vapima.butjet.answers.person;
 
 import ru.vapima.butjet.answers.Answer;
 import ru.vapima.butjet.answers.Config;
-import ru.vapima.butjet.dao.PersonDAO;
+import ru.vapima.butjet.dao.Dao;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.exeptions.PlanExeption;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 public class PostPerson implements Answer {
     private Config config;
-    private PersonDAO personDAO;
+    private Dao<Person> personDAO;
     private HttpServletRequest req;
     private Serial serial;
     private Deserial deserial;
@@ -26,7 +26,7 @@ public class PostPerson implements Answer {
         this.personDAO = config.getDaoFactory().createPersonDao();
         this.req = config.getReq();
         this.serial = config.getSerialFactory().createJsonSer();
-        this.deserial = config.getSerialFactory().createJsonDeser();
+        this.deserial = config.getSerialFactory().createGsonDeser();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class PostPerson implements Answer {
         person.setPassword(config.getAuthPerson().getPasswordHash().getHash(password));
         config.getValidation().check(person);
         Integer i = personDAO.insert(person);
-        return serial.go(personDAO.takeBy(i));
+        return serial.parse(personDAO.takeBy(i));
     }
 
 }

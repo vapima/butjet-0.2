@@ -12,7 +12,9 @@ public class TokenServiceTest {
     @Test
     public void create() {
         TokenService tokenService = new TokenService();
-        assertNotNull(tokenService.create(new Person(0, "test", "test", "test")));
+        String str=tokenService.create(new Person(0, "test", "test", "test"));
+        System.out.println(str);
+        assertNotNull(str);
     }
 
     @Test

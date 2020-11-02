@@ -130,7 +130,230 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"{{name}}\",\"password\":\"{{password}}\"}",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/person/token",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"person",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/person/testToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "317b5ee8-4a15-48c1-b580-d87f1e4b63b3",
+								"exec": [
+									"pm.test(\"Name is  not Null\", function() {",
+									"var jsonData = pm.response.json();",
+									"pm.expect(jsonData.name).not.eq(undefined);",
+									"});",
+									"pm.test(\"Id is not Null\", function() {",
+									"var jsonData = pm.response.json();",
+									"pm.expect(jsonData.id).not.eq(undefined);",
+									"});",
+									"pm.test(\"Body have id\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									"pm.test(\"Body have name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b82592b9-1c0b-4091-9a7a-7d0aee89d694",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/person/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/person/token?type=telegram",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8bc3bffd-bb27-41d9-8905-fca32fd4c74a",
+								"exec": [
+									"loc = pm.response.headers.get(\"Token\");",
+									"postman.setEnvironmentVariable(\"token\",  loc);",
+									"pm.test(\"Token is not Null\", function() {",
+									"pm.expect(loc).not.eq(undefined);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{name}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/person/token?type=telegram",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"person",
+								"token"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "telegram"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/person/tokenByTokenForTelegram",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad503c0a-0edf-4f32-a2d5-950e1ade8c87",
+								"exec": [
+									"loc = pm.response.headers.get(\"Token\");",
+									"postman.setEnvironmentVariable(\"token\",  loc);",
+									"pm.test(\"Token is not Null\", function() {",
+									"pm.expect(loc).not.eq(undefined);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,13 +421,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -281,13 +504,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -300,10 +523,9 @@
 						"method": "PUT",
 						"header": [
 							{
-								"key": "",
+								"key": "password",
 								"value": "{{newPassword}",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							}
 						],
 						"body": {
@@ -316,19 +538,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/person/?password={{newPassword}}",
+							"raw": "{{URL}}/person/",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"person",
 								""
-							],
-							"query": [
-								{
-									"key": "password",
-									"value": "{{newPassword}}"
-								}
 							]
 						}
 					},
@@ -343,7 +559,7 @@
 								"id": "143da82a-e266-4be2-9b97-66c69aa917a0",
 								"exec": [
 									"pm.test(\"Body matches string\", function () {",
-									"    pm.expect(pm.response.text()).to.include(0);",
+									"    pm.expect(pm.response.text()).not;",
 									"});",
 									"",
 									""
@@ -370,13 +586,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -447,13 +663,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -592,13 +808,14 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
+								"id": "196b3790-cf30-402f-8dc8-a70d7ec3511f",
 								"exec": [
 									"loc = pm.response.headers.get(\"Token\");",
 									"postman.setEnvironmentVariable(\"token\",  loc);",
 									"pm.test(\"Token is not Null\", function() {",
 									"pm.expect(loc).not.eq(undefined);",
 									"});",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -628,7 +845,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{}}",
+							"raw": "{}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -656,25 +873,15 @@
 							"script": {
 								"id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
 								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
 									"var jsonData = JSON.parse(responseBody);",
 									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"postman.setEnvironmentVariable(\"accname\", jsonData.name);",
-									"",
-									""
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
 								],
 								"type": "text/javascript"
 							}
@@ -682,7 +889,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "65f093b2-f0e1-419b-b0f1-20468d345890",
+								"id": "bd07c2e0-c35e-46f1-8e17-921e3bda85c4",
 								"exec": [
 									""
 								],
@@ -695,13 +902,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -715,7 +922,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": {{$randomUserName}},\n    \"balance\": {{$randomInt}},\n    \"nameInfo\": {{$randomUserName}},\n    \"description\": \"\",\n    \"active\": {{$randomBoolean}}\n}\n\n",
+							"raw": "{\n    \"name\":{{$randomLastName}},\n    \"active\": {{$randomBoolean}},\n    \"balance\" : 0,\n    \"changeTime\" : \"2021-09-21T11:52:28\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -741,279 +948,17 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b2373c37-ec07-457d-9583-902abbe17b9e",
+								"id": "3b742004-de1c-4b75-9411-2124271fb5bf",
 								"exec": [
-									"",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"pm.test(\"test name\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.nameInfo).to.eql(\"newname\");",
-									"});",
-									"pm.test(\"test description\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.description).to.eql(\"newdes\");",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "ba8f7a0c-681b-4ae5-bc9d-efa53080ccb0",
-								"exec": [
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nameInfo\": \"newname\",\n    \"description\": \"newdes\",\n    \"active\": {{$randomBoolean}}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/{{accname}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"{{accname}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "65f093b2-f0e1-419b-b0f1-20468d345890",
-								"exec": [
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/{{accname}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"{{accname}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
-								"exec": [
-									"pm.test(\"Status is deleted\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.status).eq(\"deleted\");",
-									"pm.expect(jsonData.rows).eq('2');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "65f093b2-f0e1-419b-b0f1-20468d345890",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/{{accname}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"{{accname}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7a1ab160-6276-4af3-b90d-78238b680fb5",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
 									"var jsonData = JSON.parse(responseBody);",
 									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"postman.setEnvironmentVariable(\"accname\", jsonData.name);",
-									"",
-									""
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
 								],
 								"type": "text/javascript"
 							}
@@ -1021,7 +966,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d2bf9243-da3f-4ada-ab5e-7691b4bc6ae8",
+								"id": "6649964e-fbea-4053-8e7e-ca78f55ec65c",
 								"exec": [
 									""
 								],
@@ -1034,13 +979,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -1054,7 +999,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": {{$randomUserName}},\n    \"balance\": {{$randomInt}},\n     \"nameInfo\": {{$randomUserName}},\n    \"description\": \"\",\n    \"active\": {{$randomBoolean}}\n}\n\n",
+							"raw": "{\n    \"name\":{{$randomLastName}},\n    \"active\": {{$randomBoolean}},\n    \"balance\" : 0,\n    \"changeTime\" : \"2021-09-21T11:52:28\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1075,28 +1020,27 @@
 					"response": []
 				},
 				{
-					"name": "/acc/point",
+					"name": "/acc/all/",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ef01a58-bf60-4c73-8e3f-6c1c662edd35",
+								"id": "45ada212-dc7c-4818-b82c-62984b00b57b",
 								"exec": [
 									"",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"pm.test('Matches accs', () => {",
+									"    _.each(pm.response.json(), (arrItem) => {",
+									"        pm.expect(arrItem.id).not.eq(undefined);",
+									"        pm.expect(arrItem.name).not.eq(undefined);",
+									"        pm.expect(arrItem.balance).eq(0);",
+									"        pm.expect(arrItem.changeTime).not.eq(undefined);",
+									"        pm.expect(arrItem.active).not.eq(undefined);",
+									"        pm.expect(arrItem.personId).not.eq(undefined);",
+									"    })",
 									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"pm.test(\"Your test name\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.balance).to.eql(888111888);",
-									"});",
-									"",
-									"",
-									"",
-									""
+									"responseJson = JSON.parse(responseBody);",
+									"var list = responseJson.length;",
+									" pm.expect(list).eq(2);"
 								],
 								"type": "text/javascript"
 							}
@@ -1104,10 +1048,165 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "77c41b12-ae0f-409a-83b5-73f688f94e8d",
+								"id": "ad5e77e6-87df-48c8-a76b-40af7eb899fd",
 								"exec": [
-									"",
-									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/acc/all/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"acc",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/acc/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab2fa6bb-4e3b-48ec-a338-f6adde6bf0b5",
+								"exec": [
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "99a65309-ed83-4dbd-9a16-61387fbcfa9e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/acc/{{acc}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"acc",
+								"{{acc}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/acc/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96110d0f-c77d-4815-a4d0-4601bc41de20",
+								"exec": [
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).eq(\"changeName\");",
+									"        pm.expect(jsonData.balance).eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fa3ade51-585c-4f7c-9dba-e5894574fe5b",
+								"exec": [
 									""
 								],
 								"type": "text/javascript"
@@ -1119,13 +1218,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -1139,7 +1238,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"balance\": 888111888\n}",
+							"raw": "{\n    \"name\":\"changeName\",\n    \"active\":{{$randomBoolean}}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1147,896 +1246,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/acc/point/{{acc}}",
+							"raw": "{{URL}}/acc/{{acc}}",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"acc",
-								"point",
 								"{{acc}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/point/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "171cb4a0-b231-4f49-8840-eba29a7a7fdc",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "65f093b2-f0e1-419b-b0f1-20468d345890",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{accname}}\",\n    \"balance\": {{$randomInt}},\n    \"active\": {{$randomBoolean}}\n}\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/point/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "8c06aa2f-604a-4eca-b00d-d4ba417f12b4",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "846a279e-4d1d-4be0-aa57-b61f985bf5c1",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{accname}}\",\n    \"balance\": {{$randomInt}},\n    \"active\": {{$randomBoolean}}\n}\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/point/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "24b87175-84f6-4588-9264-4e3b6f72f6a9",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "a604affe-4994-4302-a250-b2a8f0024a45",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{accname}}\",\n    \"balance\": {{$randomInt}},\n    \"active\": {{$randomBoolean}}\n}\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/point/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "cedbf516-cb33-4734-9800-766a12de3cb4",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "25b1be9a-062a-4e9e-aac6-1ee6b5904384",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{accname}}\",\n    \"balance\": {{$randomInt}},\n    \"active\": {{$randomBoolean}}\n}\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/point/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "6ec92479-364e-4c1a-8a08-f5ba7a9aaab4",
-								"exec": [
-									"pm.test(\"Name is  not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.name).not.eq(undefined);",
-									"});",
-									"pm.test(\"Id is not Null\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.id).not.eq(undefined);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "01cb779b-aa23-438d-9113-6f94e63b5f4c",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{accname}}\",\n    \"balance\": {{$randomInt}},\n    \"active\": {{$randomBoolean}}\n}\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/ check 6 rows",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c64f0462-0033-488b-9aa2-32f3baa905f5",
-								"exec": [
-									"var expectRows=6;",
-									"var list = responseBody.length;",
-									"responseJson = JSON.parse(responseBody);",
-									"var list = responseJson.length;",
-									"pm.test(\"Validate value count \"+expectRows, function () {",
-									"    pm.expect(list).to.eq(expectRows);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"let resp =pm.response.json();",
-									"responseJson = JSON.parse(responseBody);",
-									"pm.test('Finding acc name', function() {",
-									"    let personId = \"name\";",
-									"",
-									"    _.forEach(resp, (respObj, index) => {",
-									"        if (respObj.persID === personId) { // or do the vice-versa",
-									"            console.log('Found', respObj);",
-									"            throw new Error('Found it!'); // This will make the test fail",
-									"        }",
-									"    });",
-									"    // If not found then the test will pass... ",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "d7b384bf-d6de-47ef-b756-785b09ec7637",
-								"exec": [
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/all/{{accname}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								"all",
-								"{{accname}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/ del last",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1eed2a19-4b1f-4a59-9c46-99ec7c854186",
-								"exec": [
-									"pm.test(\"Status is deleted\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.status).eq(\"deleted\");",
-									"pm.expect(jsonData.rows).eq(\"1\");",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "5f4fd99a-56e0-447d-9c87-a5faa1864e5c",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/{{acc}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								"{{acc}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/ check 5 rows",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "5e35e26a-0361-4680-b6dd-ff5863fac933",
-								"exec": [
-									"var expectRows=5;",
-									"var list = responseBody.length;",
-									"responseJson = JSON.parse(responseBody);",
-									"var list = responseJson.length;",
-									"pm.test(\"Validate value count \"+expectRows, function () {",
-									"    pm.expect(list).to.eq(expectRows);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"let resp =pm.response.json();",
-									"responseJson = JSON.parse(responseBody);",
-									"pm.test('Finding acc name', function() {",
-									"    let personId = \"name\";",
-									"",
-									"    _.forEach(resp, (respObj, index) => {",
-									"        if (respObj.persID === personId) { // or do the vice-versa",
-									"            console.log('Found', respObj);",
-									"            throw new Error('Found it!'); // This will make the test fail",
-									"        }",
-									"    });",
-									"    // If not found then the test will pass... ",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "0fd297d3-e70f-40ba-9e3c-88ca12525f0f",
-								"exec": [
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/point/all/{{accname}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"point",
-								"all",
-								"{{accname}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/info/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2a11b975-57c5-4ac7-8056-b7ba80d4e8f4",
-								"exec": [
-									"var expectRows=1;",
-									"var list = responseBody.length;",
-									"responseJson = JSON.parse(responseBody);",
-									"var list = responseJson.length;",
-									"pm.test(\"Validate value count \"+expectRows, function () {",
-									"    pm.expect(list).to.eq(expectRows);",
-									"});",
-									"pm.test(\"Body have id\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"id\");",
-									"});",
-									"pm.test(\"Body have name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"name\");",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "b019f7cf-31ab-4635-8ae3-51ea2634c6c1",
-								"exec": [
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/info/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"info",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/acc/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0110a88f-7214-473d-bfe4-31407fb55a14",
-								"exec": [
-									"pm.test(\"Status is deleted\", function() {",
-									"var jsonData = pm.response.json();",
-									"pm.expect(jsonData.status).eq(\"deleted\");",
-									"pm.expect(jsonData.rows).eq('6');",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "93782f89-238c-4def-879b-5cf326f1a171",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "query",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/acc/{{accname}}",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"acc",
-								"{{accname}}"
 							]
 						}
 					},
@@ -2075,13 +1291,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -2143,6 +1359,706 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "AccRec tests (positive)",
+			"item": [
+				{
+					"name": "create_person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4919554e-0e9e-421c-939d-3c09b7fb4a47",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4a7844dc-6675-4135-ab59-e652d414124a",
+								"exec": [
+									"pm.environment.set(\"name\", \"PmTestName\"+Math.floor(Math.random() * 100)+\"@gmail.com\");",
+									"pm.environment.set(\"password\", \"PmTestPassword\"+Math.floor(Math.random() * 100));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{name}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/person/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "edefa91a-254d-41df-a0c3-cd77e457a6bd",
+								"exec": [
+									"loc = pm.response.headers.get(\"Token\");",
+									"postman.setEnvironmentVariable(\"token\",  loc);",
+									"pm.test(\"Token is not Null\", function() {",
+									"pm.expect(loc).not.eq(undefined);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{name}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/person/token",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"person",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/acc/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "48d3f67a-9367-4095-8ef0-d76c70fb325a",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"acc\", jsonData.id);",
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1c602ade-0e75-4d59-9ae4-84307fc613c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":{{$randomLastName}},\n    \"active\": {{$randomBoolean}},\n    \"balance\" : 0,\n    \"changeTime\" : \"2021-09-21T11:52:28\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/acc/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"acc",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/accrec/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec5272b3-ede7-4596-9ef9-c32632d41c97",
+								"exec": [
+									"jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).not.eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f2640e4b-d0a6-4ec0-bff4-417ef8e504ed",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\" : {{$randomInt}},\n    \"changeTime\" : \"2022-09-21T11:52:28\",\n    \"accId\" : {{acc}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/accrec/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"accrec",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/accrec/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fcd8c9a-ef86-479b-93eb-8dd8381af2a3",
+								"exec": [
+									"jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.name).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).not.eq(0);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.active).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cdcadc8d-a61f-4ead-aab2-36fc90003771",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\" : {{$randomInt}},\n    \"changeTime\" : \"2022-09-21T11:52:28\",\n    \"accId\" : {{acc}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/accrec/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"accrec",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/accrec/all/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c2bab583-b631-4f29-9536-51013b549b90",
+								"exec": [
+									"",
+									"pm.test('Matches accs', () => {",
+									"    _.each(pm.response.json(), (arrItem) => {",
+									"        pm.expect(arrItem.id).not.eq(undefined);",
+									"        pm.expect(arrItem.balance).not.eq(undefined);",
+									"        pm.expect(arrItem.changeTime).not.eq(undefined);",
+									"        pm.expect(arrItem.accId).not.eq(undefined);",
+									"        pm.expect(arrItem.personId).not.eq(undefined);",
+									"        postman.setEnvironmentVariable(\"accrec\", arrItem.id);",
+									"    })",
+									"});",
+									"responseJson = JSON.parse(responseBody);",
+									"var list = responseJson.length;",
+									" pm.expect(list).eq(2);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3260a58d-e5c7-4eb8-ab11-df80eb9eeef6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/accrec/all/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"accrec",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/accrec/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c2bab583-b631-4f29-9536-51013b549b90",
+								"exec": [
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).not.eq(undefined);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.accId).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3260a58d-e5c7-4eb8-ab11-df80eb9eeef6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/accrec/{{accrec}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"accrec",
+								"{{accrec}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/accrec/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec5272b3-ede7-4596-9ef9-c32632d41c97",
+								"exec": [
+									"",
+									"        jsonData=pm.response.json();",
+									"        pm.expect(jsonData.id).not.eq(undefined);",
+									"        pm.expect(jsonData.balance).eq(200);",
+									"        pm.expect(jsonData.changeTime).not.eq(undefined);",
+									"        pm.expect(jsonData.accId).not.eq(undefined);",
+									"        pm.expect(jsonData.personId).not.eq(undefined);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f2640e4b-d0a6-4ec0-bff4-417ef8e504ed",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\" : 200,\n    \"changeTime\" : \"2022-09-21T11:52:28\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/accrec/{{accrec}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"accrec",
+								"{{accrec}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d074fc0-1499-4c8a-a698-568e4c21116d",
+								"exec": [
+									"pm.test(\"Status is deleted\", function() {",
+									"var jsonData = pm.response.json();",
+									"pm.expect(jsonData.status).eq(\"deleted\");",
+									"pm.expect(jsonData.rows).eq('1');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0e00f1c2-5250-452d-b8bc-eb9d94cf655c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/person/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9264b314-e11f-4bae-82e6-82b9af1f84ee",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0694aea-a59f-4013-8122-fb35adaa324b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Plan tests (positive)",
 			"item": [
 				{
@@ -2167,6 +2083,7 @@
 									"pm.test(\"Body have name\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"name\");",
 									"});",
+									"var jsonData = JSON.parse(responseBody);",
 									"",
 									"",
 									"",
@@ -2319,6 +2236,8 @@
 									"var jsonData = JSON.parse(responseBody);",
 									"postman.setEnvironmentVariable(\"plan\", jsonData.id);",
 									"",
+									"",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -2340,13 +2259,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -2374,6 +2293,184 @@
 							],
 							"path": [
 								"plan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/plan/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d25cbd23-714e-4db6-919f-7db007d2e3dc",
+								"exec": [
+									"pm.test(\"Name is  not Null\", function() {",
+									"var jsonData = pm.response.json();",
+									"pm.expect(jsonData.name).not.eq(undefined);",
+									"});",
+									"pm.test(\"Id is not Null\", function() {",
+									"var jsonData = pm.response.json();",
+									"pm.expect(jsonData.id).not.eq(undefined);",
+									"});",
+									"pm.test(\"Body have id\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"});",
+									"pm.test(\"Body have name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"pm.test(\"Blance is 100\", function() {",
+									"var jsonData = pm.response.json();",
+									"pm.expect(jsonData.balance).eq(100);",
+									"});",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"plan\", jsonData.id);",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c6501109-241d-4c38-8f80-bf424d9409c4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"balance\": 100,\n    \"dateExpiration\":\"2021-09-14\" \n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/plan/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"plan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/plan/all/",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f6bfeb0b-6b3e-4500-b68d-54aef96a4d8a",
+								"exec": [
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b8a3031f-daeb-4953-8157-bd83d28f9d51",
+								"exec": [
+									"pm.test('Matches plans', () => {",
+									"    _.each(pm.response.json(), (arrItem) => {",
+									"        pm.expect(arrItem.id).not.eq(undefined);",
+									"        pm.expect(arrItem.name).not.eq(undefined);",
+									"        pm.expect(arrItem.balance).eq(100);",
+									"        pm.expect(arrItem.id).not.eq(undefined);",
+									"    })",
+									"});",
+									"responseJson = JSON.parse(responseBody);",
+									"var list = responseJson.length;",
+									" pm.expect(list).eq(2);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/plan/all/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"plan",
+								"all",
 								""
 							]
 						}
@@ -2430,13 +2527,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -2519,13 +2616,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -2593,13 +2690,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -2667,13 +2764,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "value",
-									"value": "{{token}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
-									"key": "in",
-									"value": "query",
+									"key": "value",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{

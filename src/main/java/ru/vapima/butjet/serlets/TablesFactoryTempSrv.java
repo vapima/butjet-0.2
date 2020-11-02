@@ -20,18 +20,10 @@ public class TablesFactoryTempSrv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BdCreatorJDBC bdCreatorJDBC = new DaoFactory().createDB();
-        try {
-            bdCreatorJDBC.creatPersons();
-            bdCreatorJDBC.creatAccs();
-            bdCreatorJDBC.creatPlans();
-            bdCreatorJDBC.creatAccsInfo();
-        } catch (SQLException e) {
-            log.info(e.toString());
-            resp.setContentType("text/plain");
-            resp.setCharacterEncoding("UTF-8");
-            resp.setStatus(500);
-            PrintWriter writer = resp.getWriter();
-            writer.println("Unknown error. " + e.toString());
-        }
+        try { bdCreatorJDBC.creatPersons();} catch (SQLException e) { log.info(e.toString()); }
+        try { bdCreatorJDBC.creatAccs();} catch (SQLException e) { log.info(e.toString()); }
+        try { bdCreatorJDBC.creatPlans();} catch (SQLException e) { log.info(e.toString()); }
+        try { bdCreatorJDBC.creatAccRecs();} catch (SQLException e) { log.info(e.toString()); }
+
     }
 }

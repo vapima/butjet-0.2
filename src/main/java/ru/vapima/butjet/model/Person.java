@@ -1,6 +1,6 @@
 package ru.vapima.butjet.model;
 
-public class Person {
+public class Person implements PersonID {
     private Integer id;
     private String name; //This is E-MAIL FORMAT
     private String token;
@@ -53,5 +53,10 @@ public class Person {
                 ", token='" + token + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public Integer takePersonId() {
+        return id;
     }
 }

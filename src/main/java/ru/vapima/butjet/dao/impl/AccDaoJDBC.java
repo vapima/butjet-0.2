@@ -1,6 +1,6 @@
 package ru.vapima.butjet.dao.impl;
 
-import ru.vapima.butjet.dao.AccDAO;
+import ru.vapima.butjet.dao.Dao;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.model.Acc;
 
@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class AccDaoJDBC implements AccDAO {
+public class AccDaoJDBC implements Dao<Acc> {
     DataSource dataSource;
 
     public AccDaoJDBC(DataSource dataSource) {
@@ -53,10 +53,11 @@ public class AccDaoJDBC implements AccDAO {
     @Override
     public Integer delete(Acc acc) throws SQLException {
         int i;
-        Connection con = dataSource.getConnection();
-            try (PreparedStatement statement = con.prepareStatement("DELETE FROM Accs WHERE id=?")) {
+            try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("DELETE FROM Accs WHERE id=?")) {
                 statement.setInt(1, acc.getId());
+                statement.execute("SET FOREIGN_KEY_CHECKS=0");
                 i = statement.executeUpdate();
+                statement.execute("SET FOREIGN_KEY_CHECKS=1");
             }
         return i;
     }
@@ -67,7 +68,7 @@ public class AccDaoJDBC implements AccDAO {
             try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("UPDATE accs SET name=?,balance=?,datetime=?,active=? WHERE id=?")) {
                 statement.setString(1, acc.getName());
                 statement.setInt(2, acc.getBalance());
-                statement.setTimestamp(3, Timestamp.valueOf(acc.getChangTime()));
+                statement.setTimestamp(3, Timestamp.valueOf(acc.getChangeTime()));
                 statement.setBoolean(4, acc.getActive());
                 statement.setInt(5, acc.getId());
                 i = statement.executeUpdate();
@@ -81,7 +82,7 @@ public class AccDaoJDBC implements AccDAO {
             try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("INSERT INTO accs (name,balance,datetime,active,personid) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, acc.getName());
                 statement.setInt(2, acc.getBalance());
-                statement.setTimestamp(3, Timestamp.valueOf(acc.getChangTime()));
+                statement.setTimestamp(3, Timestamp.valueOf(acc.getChangeTime()));
                 statement.setBoolean(4, acc.getActive());
                 statement.setInt(5, acc.getPersonId());
                 statement.executeUpdate();
@@ -107,7 +108,7 @@ public class AccDaoJDBC implements AccDAO {
         return accs;
     }
 
-    @Override
+  /*  @Override
     public ArrayList<Acc> takeAll(String name) throws SQLException, AccExeption {
         ArrayList<Acc> accs = new ArrayList<>();
             try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("select * from accs where name=?")) {
@@ -119,7 +120,7 @@ public class AccDaoJDBC implements AccDAO {
                 }
             }
         return accs;
-    }
+    }*/
 
 
     @Override
@@ -136,7 +137,7 @@ public class AccDaoJDBC implements AccDAO {
         return accs;
     }
 
-    @Override
+    /*@Override
     public ArrayList<Acc> takeLastByForeignKey(Integer foreignKey) throws SQLException {
         ArrayList<Acc> accs = new ArrayList<>();
             try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("SELECT * FROM accs WHERE id IN(SELECT MAX(id) FROM accs GROUP BY name) and personid=?")) {
@@ -148,18 +149,6 @@ public class AccDaoJDBC implements AccDAO {
                 }
             }
         return accs;
-    }
-
-    @Override
-    public Integer deleteAllByNameAndIdPerson(String name, Integer id) throws SQLException {
-        int i;
-            try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("DELETE FROM Accs WHERE name=? and personid=?")) {
-                statement.setString(1, name);
-                statement.setInt(2, id);
-                i = statement.executeUpdate();
-            }
-        return i;
-    }
-
+    }*/
 
 }

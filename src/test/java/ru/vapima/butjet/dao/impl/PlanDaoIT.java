@@ -1,8 +1,7 @@
 package ru.vapima.butjet.dao.impl;
 
-import ru.vapima.butjet.dao.JDBCpoolStub;
-import ru.vapima.butjet.dao.PersonDAO;
-import ru.vapima.butjet.dao.PlanDAO;
+import ru.vapima.butjet.dao.Dao;
+import ru.vapima.butjet.dao.JDBCpoolMock;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.exeptions.PlanExeption;
@@ -20,15 +19,15 @@ import static org.junit.Assert.*;
 
 public class PlanDaoIT {
     public static Integer i;
-    public static PlanDAO pd;
+    public static Dao<Plan> pd;
 
     static {
-        pd = new PlanDaoJDBC(JDBCpoolStub.getDataSource());
+        pd = new PlanDaoJDBC(JDBCpoolMock.getDataSource());
     }
-    public static PersonDAO perd;
+    public static Dao<Person> perd;
 
     static {
-        perd = new PersonDaoJDBC(JDBCpoolStub.getDataSource());
+        perd = new PersonDaoJDBC(JDBCpoolMock.getDataSource());
     }
     @BeforeClass
     public static void beforeClass() throws SQLException, PersonExeption {

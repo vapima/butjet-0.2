@@ -2,7 +2,7 @@ package ru.vapima.butjet.model;
 
 import java.time.LocalDate;
 
-public class Plan {
+public class Plan implements PersonID{
     private Integer id;
     private String name;
     private Integer balance;
@@ -67,5 +67,10 @@ public class Plan {
                 ", dateExpiration=" + dateExpiration +
                 ", personId=" + personId +
                 '}';
+    }
+
+    @Override
+    public Integer takePersonId() {
+        return personId;
     }
 }

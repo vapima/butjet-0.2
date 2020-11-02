@@ -16,7 +16,5 @@ public class DaoFactoryStub extends DaoFactory {
         return new AccDaoJDBCStub();
     }
 
-    public AccInfoDAO createAccInfoDao(){ return new AccInfoDaoJDBCStub();}
-
 
 }

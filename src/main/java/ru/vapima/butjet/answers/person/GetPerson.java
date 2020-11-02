@@ -2,7 +2,7 @@ package ru.vapima.butjet.answers.person;
 
 import ru.vapima.butjet.answers.Answer;
 import ru.vapima.butjet.answers.Config;
-import ru.vapima.butjet.dao.PersonDAO;
+import ru.vapima.butjet.dao.Dao;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.exeptions.PlanExeption;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class GetPerson implements Answer {
     private Config config;
-    private PersonDAO personDAO;
+    private Dao<Person> personDAO;
     private HttpServletRequest req;
     private Serial serial;
 
@@ -29,6 +29,6 @@ public class GetPerson implements Answer {
     @Override
     public String run() throws PersonExeption, AccExeption, SQLException, PlanExeption {
         Person person = personDAO.takeBy(config.getAuthPerson().getPersonID());
-        return serial.go(person);
+        return serial.parse(person);
     }
 }

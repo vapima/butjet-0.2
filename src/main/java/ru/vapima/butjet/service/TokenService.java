@@ -34,14 +34,17 @@ public class TokenService {
         String nums = "0123456789";
         String passSymbols = charsCaps + nums;
         Random rnd = new Random();
-        //char[] password = new char[len];
-        String key = "";
-
+        StringBuilder sb=new StringBuilder();
         for (int i = 0; i < len; i++) {
-            key += passSymbols.charAt(rnd.nextInt(passSymbols.length()));
+            //key += passSymbols.charAt(rnd.nextInt(passSymbols.length()));
+            sb.append(passSymbols.charAt(rnd.nextInt(passSymbols.length())));
         }
-        return key;
+        return sb.toString();
 
+    }
+
+    public String getSimpleToken(){
+        return generateSimple();
     }
 
     public String create(Person person) {

@@ -8,7 +8,7 @@ public class SerialFactoryStub extends SerialFactory {
     }
 
     @Override
-    public Deserial createJsonDeser() {
+    public Deserial createGsonDeser() {
         return new JsonDeserialStub();
     }
 }

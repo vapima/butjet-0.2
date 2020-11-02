@@ -10,18 +10,17 @@ import java.util.ArrayList;
 
 public class MyRdnMonth {
 
-    Person person;
-    ArrayList<Acc> accs;
-    ArrayList<Plan> plans;
+    private ArrayList<Acc> accs;
+    private ArrayList<Plan> plans;
 
-    public MyRdnMonth(Person person, ArrayList<Acc> accs, ArrayList<Plan> plans) {
-        this.person = person;
+    public MyRdnMonth(ArrayList<Acc> accs, ArrayList<Plan> plans) {
         this.accs = accs;
         this.plans = plans;
     }
 
     public Integer getRdn() {
-        return (totalAccActive() + totalPlan()) / daysLeftMonth();
+        Integer rdn=(totalAccActive() + totalPlan()) / daysLeftMonth();
+        return rdn;
     }
 
     private Integer totalAcc() {
@@ -50,7 +49,7 @@ public class MyRdnMonth {
         return totalPlans;
     }
 
-    private Integer daysLeftMonth() {
+    public Integer daysLeftMonth() {
         return Period.between(LocalDate.now(), LocalDate.now().plusMonths(1).withDayOfMonth(1)).getDays();
     }
 

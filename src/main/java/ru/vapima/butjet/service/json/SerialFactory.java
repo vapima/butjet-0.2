@@ -12,9 +12,12 @@ public class SerialFactory {
         return new JsonSerial(getGsonBuilder());
     }
 
-    public Deserial createJsonDeser() {
-        return new JsonDeserial(getGsonBuilder());
+    public Serial creatGsonSerial(){return new GsonSerial(getGsonBuilder());}
+
+    public Deserial createGsonDeser() {
+        return new GsonDeserial(getGsonBuilder());
     }
+
 
     private static GsonBuilder getGsonBuilder() {
         GsonBuilder gsonBuilder;

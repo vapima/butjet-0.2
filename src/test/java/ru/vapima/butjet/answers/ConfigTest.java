@@ -1,11 +1,10 @@
 package ru.vapima.butjet.answers;
 
-import ru.vapima.butjet.dao.DaoFactoryStub;
-import ru.vapima.butjet.service.ValidationStub;
-import ru.vapima.butjet.service.json.SerialFactoryStub;
+import org.junit.Test;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.io.*;
 import java.security.Principal;
 import java.util.Collection;
@@ -13,15 +12,22 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-public class ConfigStub extends Config {
+import static org.junit.Assert.*;
 
-    public ConfigStub() {
-        super(null, null);
-        super.setDaoFactory(new DaoFactoryStub());
-        super.setValidation(new ValidationStub());
-        super.setAuthPerson(new AuthPersonStub());
-        super.setSerialFactory(new SerialFactoryStub());
-        super.setReq(new HttpServletRequest() {
+public class ConfigTest {
+
+    @Test
+    public void getBodyData() {
+        Config config=new Config(new HttpServletRequest() {
+
+            @Override
+            public BufferedReader getReader() throws IOException {
+                String test = "test";
+                Reader inputString = new StringReader(test);
+                BufferedReader bf=new BufferedReader(inputString);
+                return bf;
+            }
+
             @Override
             public String getAuthType() {
                 return null;
@@ -39,9 +45,6 @@ public class ConfigStub extends Config {
 
             @Override
             public String getHeader(String s) {
-                if (s.equalsIgnoreCase("token")){return "testToken";}
-                if(s.equalsIgnoreCase("Authorization")){return "Basic dGVzdE5hbWU6dGVzdFBhc3N3b3Jk";}
-                if (s.equals("password")){return "test";}
                 return null;
             }
 
@@ -187,8 +190,7 @@ public class ConfigStub extends Config {
 
             @Override
             public Object getAttribute(String s) {
-                if (s.equals("id")){return 1;}
-                else return "test";
+                return null;
             }
 
             @Override
@@ -228,7 +230,6 @@ public class ConfigStub extends Config {
 
             @Override
             public String getParameter(String s) {
-                if (s.equals("password")){return "test";}
                 return null;
             }
 
@@ -265,14 +266,6 @@ public class ConfigStub extends Config {
             @Override
             public int getServerPort() {
                 return 0;
-            }
-
-            @Override
-            public BufferedReader getReader() throws IOException {
-                    String test = "{test:test}";
-                    Reader inputString = new StringReader(test);
-                    BufferedReader bf=new BufferedReader(inputString);
-                    return bf;
             }
 
             @Override
@@ -374,6 +367,8 @@ public class ConfigStub extends Config {
             public DispatcherType getDispatcherType() {
                 return null;
             }
-        });
+        }, null);
+        assertEquals("test", config.getBodyData().toString());
     }
+
 }

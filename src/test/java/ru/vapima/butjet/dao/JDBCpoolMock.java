@@ -8,7 +8,7 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class JDBCpoolStub {
+public class JDBCpoolMock {
     private static DataSource dataSource;
 
     public static synchronized DataSource getDataSource() {

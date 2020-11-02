@@ -2,7 +2,6 @@ package ru.vapima.butjet.service.json;
 
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.model.Acc;
-import ru.vapima.butjet.model.AccInfoEntity;
 import ru.vapima.butjet.model.Person;
 import ru.vapima.butjet.model.Plan;
 
@@ -29,9 +28,5 @@ public class JsonDeserialStub implements Deserial {
         return new Plan(1,"test",0, LocalDate.parse("2029-01-01"),1);
     }
 
-    @Override
-    public AccInfoEntity getAccInfoEntity(HttpServletRequest req) throws IOException, PersonExeption {
-        return new AccInfoEntity(1,1,"test","test","test",true);
-    }
 
 }

@@ -1,6 +1,6 @@
 package ru.vapima.butjet.dao.impl;
 
-import ru.vapima.butjet.dao.PlanDAO;
+import ru.vapima.butjet.dao.Dao;
 import ru.vapima.butjet.exeptions.PlanExeption;
 import ru.vapima.butjet.model.Plan;
 
@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class PlanDaoJDBC implements PlanDAO {
+public class PlanDaoJDBC implements Dao<Plan> {
     DataSource dataSource;
 
     public PlanDaoJDBC(DataSource dataSource) {
@@ -103,19 +103,6 @@ public class PlanDaoJDBC implements PlanDAO {
         return plans;
     }
 
-    @Override
-    public ArrayList<Plan> takeAll(String name) throws SQLException, PlanExeption {
-        ArrayList<Plan> plans = new ArrayList<>();
-            try (Connection con = dataSource.getConnection();PreparedStatement statement = con.prepareStatement("select * from plans where name=?")) {
-                statement.setString(1, name);
-                try (ResultSet rs = statement.executeQuery()) {
-                    while (rs.next()) {
-                        plans.add(new Plan(rs.getInt("id"), rs.getString("name"), rs.getInt("balance"), rs.getDate("date").toLocalDate(), rs.getInt("personid")));
-                    }
-                }
-            }
-        return plans;
-    }
 
 
     @Override

@@ -53,7 +53,7 @@ public class AuthPerson {
     }
 
     public Integer getPersonID() throws PersonExeption {
-        String token = config.getValidation().isTokenOK(req.getParameter("token"));
+        String token = config.getValidation().isTokenOK(req.getHeader("token"));
         return tokenService.decode(token);
     }
 
@@ -63,6 +63,10 @@ public class AuthPerson {
             throw new PersonExeption("Name and password fail. " + nameAndPassword.length);
         }
         return nameAndPassword[0];
+    }
+
+    public String getTokenAuthFromReq() throws PersonExeption {
+        return req.getHeader("token");
     }
 
     public String getPasswordAuthFromReq() throws PersonExeption {

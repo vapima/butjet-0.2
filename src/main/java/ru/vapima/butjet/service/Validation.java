@@ -46,7 +46,7 @@ public class Validation {
                         "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Matcher m = Pattern.compile(emailPattern).matcher(str);
         if (!m.matches()) {
-            throw new ValidExeption("E-mail is not corrrect. Only latin. UpperCase, LowerCase and Number should be.");
+            throw new ValidExeption("E-mail is not corrrect. "+str);
         }
         return str;
     }

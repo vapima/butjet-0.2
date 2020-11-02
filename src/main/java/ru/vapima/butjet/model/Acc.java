@@ -4,19 +4,19 @@ package ru.vapima.butjet.model;
 import java.time.LocalDateTime;
 
 
-public class Acc {
+public class Acc implements PersonID{
     private Integer id;
     private String name;
     private Integer balance;
-    private LocalDateTime changTime;
+    private LocalDateTime changeTime;
     private Boolean active;
     private Integer personId;
 
-  public Acc(Integer id, String name, Integer balance, LocalDateTime changTime, Boolean active, Integer personId) {
+  public Acc(Integer id, String name, Integer balance, LocalDateTime changeTime, Boolean active, Integer personId) {
         this.id = id;
         this.name = name;
         this.balance = balance;
-        this.changTime = changTime;
+        this.changeTime = changeTime;
         this.active = active;
         this.personId = personId;
     }
@@ -29,12 +29,12 @@ public class Acc {
         this.personId = personId;
     }
 
-    public LocalDateTime getChangTime() {
-        return changTime;
+    public LocalDateTime getChangeTime() {
+        return changeTime;
     }
 
-    public void setChangTime(LocalDateTime changTime) {
-        this.changTime = changTime;
+    public void setChangeTime(LocalDateTime changeTime) {
+        this.changeTime = changeTime;
     }
 
     public Boolean getActive() {
@@ -75,9 +75,14 @@ public class Acc {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", balance=" + balance +
-                ", changTime=" + changTime +
+                ", changeTime=" + changeTime +
                 ", isActive=" + active +
                 ", personId=" + personId +
                 '}';
+    }
+
+    @Override
+    public Integer takePersonId() {
+        return personId;
     }
 }

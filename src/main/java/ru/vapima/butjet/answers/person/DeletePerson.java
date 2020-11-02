@@ -2,8 +2,8 @@ package ru.vapima.butjet.answers.person;
 
 import ru.vapima.butjet.answers.Answer;
 import ru.vapima.butjet.answers.Config;
+import ru.vapima.butjet.dao.Dao;
 import ru.vapima.butjet.dao.DaoFactory;
-import ru.vapima.butjet.dao.PersonDAO;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.exeptions.PlanExeption;
@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class DeletePerson implements Answer {
     Config config;
-    private PersonDAO personDAO;
+    private Dao<Person> personDAO;
     private HttpServletRequest req;
     private Serial serial;
     private DaoFactory daoFactory;

@@ -1,7 +1,7 @@
 package ru.vapima.butjet.dao.impl;
 
-import ru.vapima.butjet.dao.JDBCpoolStub;
-import ru.vapima.butjet.dao.PersonDAO;
+import ru.vapima.butjet.dao.Dao;
+import ru.vapima.butjet.dao.JDBCpoolMock;
 import ru.vapima.butjet.exeptions.AccExeption;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.exeptions.PlanExeption;
@@ -18,10 +18,10 @@ import static org.junit.Assert.*;
 public class PersonDaoIT {
     public static Integer i;
 
-    public static PersonDAO pd;
+    public static Dao<Person> pd;
 
     static {
-        pd = new PersonDaoJDBC(JDBCpoolStub.getDataSource());
+        pd = new PersonDaoJDBC(JDBCpoolMock.getDataSource());
     }
 
     public PersonDaoIT() {

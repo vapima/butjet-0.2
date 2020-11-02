@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ru.vapima.butjet.exeptions.PersonExeption;
 import ru.vapima.butjet.model.Acc;
-import ru.vapima.butjet.model.AccInfoEntity;
 import ru.vapima.butjet.model.Person;
 import ru.vapima.butjet.model.Plan;
 
@@ -13,12 +12,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 
-public class JsonDeserial implements Deserial {
+public class GsonDeserial implements Deserial {
 
     GsonBuilder gsonBuilder;
     StringBuilder bodyData;
 
-    public JsonDeserial(GsonBuilder gsonBuilder) {
+    public GsonDeserial(GsonBuilder gsonBuilder) {
         this.gsonBuilder = gsonBuilder;
     }
 
@@ -56,11 +55,6 @@ public class JsonDeserial implements Deserial {
         return gson.fromJson(getBody(req), Plan.class);
     }
 
-    @Override
-    public AccInfoEntity getAccInfoEntity(HttpServletRequest req) throws IOException, PersonExeption {
-        Gson gson = gsonBuilder.create();
-        return gson.fromJson(getBody(req), AccInfoEntity.class);
-    }
 
 
 }

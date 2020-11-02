@@ -48,4 +48,9 @@ public class AuthPersonStub extends AuthPerson{
     public String getPasswordAuthFromReq() throws PersonExeption {
         return "test";
     }
+
+    @Override
+    public String getTokenAuthFromReq() throws PersonExeption {
+        return "1IDtest";
+    }
 }
